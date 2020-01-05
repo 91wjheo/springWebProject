@@ -77,7 +77,7 @@ public class BoardController {
 		service.delete(bno);
 		rttr.addFlashAttribute("deleteResult", "success");
 		
-		return "redirect:/board/listAll";
+		return "redirect:/board/listAll"; 
 	}
 	
 	/* 6. 등록처리 - 페이지조회 */
