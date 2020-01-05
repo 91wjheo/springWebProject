@@ -46,7 +46,7 @@
 <button type="button" class="btn btn-primary">LIST</button>
 
 
-<%@include file="../include/footer.jsp"%>
+<%@include file="../include/footer.jsp"%> 
 
 
 <script>
