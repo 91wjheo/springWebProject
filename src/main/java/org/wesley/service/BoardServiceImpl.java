@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.wesley.dao.BoardDAO;
 import org.wesley.domain.BoardVO;
+import org.wesley.domain.PagingCriteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -20,6 +21,12 @@ public class BoardServiceImpl implements BoardService {
 		return dao.listAll();
 	}
 
+	@Override
+	public List<BoardVO> pagingList(PagingCriteria cri) {
+		// TODO Auto-generated method stub
+		return dao.pagingList(cri);
+	}
+	
 	@Override
 	public void create(BoardVO vo) {
 		// TODO Auto-generated method stub

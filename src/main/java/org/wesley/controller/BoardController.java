@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.wesley.domain.BoardVO;
+import org.wesley.domain.PagingCriteria;
 import org.wesley.service.BoardService;
 
 @Controller
@@ -32,9 +33,22 @@ public class BoardController {
 		logger.info("listAll get");
 		
 		List<BoardVO> list = service.listAll();
-		model.addAttribute("list", list);
+		model.addAttribute("list", list);	
+	}
+	
+	/* 1.5 페이징처리된 리스트*/
+	@RequestMapping(method = RequestMethod.GET, value = "list")
+	public void pagingList(PagingCriteria cri, Model model) {
+		// page, perPageNum을 수집해와.
+		logger.info(cri.toString());
+		
+		model.addAttribute("pagingList", service.pagingList(cri));
 		
 	}
+	
+	
+	
+	
 	/* 2. 상세조회 */
 	// bno를 파라미터로 받아온다.
 	@RequestMapping(method=RequestMethod.GET, value = "read")

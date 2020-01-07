@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.wesley.domain.BoardVO;
+import org.wesley.domain.PagingCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -44,6 +45,12 @@ public class BoardDAOImpl implements BoardDAO {
 	public void delete(int bno) {
 		// TODO Auto-generated method stub
 		session.delete(namespace+".delete", bno);
+	}
+
+	@Override
+	public List<BoardVO> pagingList(PagingCriteria cri) {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".pagingList", cri);
 	}
 
 }

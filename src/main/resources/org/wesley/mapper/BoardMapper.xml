@@ -12,6 +12,39 @@
 		ORDER BY BNO ASC
 	</select>
 
+
+	<select id="pagingList" resultType = "BoardVO">
+	
+	<![CDATA[
+	  SELECT *
+	FROM (
+	    SELECT /*+ INDEX_ASC (TBL_BOARD PK_BOARD) */
+	            ROWNUM RN
+	           ,BNO
+	           ,TITLE
+	           ,CONTENT
+	           ,WRITER
+	           ,REGDATE
+	           ,UPDATEDATE
+	    FROM TBL_BOARD
+	    WHERE ROWNUM < #{perPageNum} * #{page} -- 한페이지당 보여줄 게시글갯수 * 페이지번호
+	) 
+	WHERE RN > #{perPageNum} * (#{page}-1) -- 한페이지당 보여줄 게시글갯수 * (페이지번호-1)
+	
+	]]>	
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
 	<select id="create">
 		INSERT INTO BOOK_EX.TBL_BOARD(BNO, TITLE, CONTENT, WRITER)
 		VALUES (SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer})
